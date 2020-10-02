@@ -9,8 +9,10 @@ class DockingStation
   end
 
   def release_bike
-    raise "There are no bikes to take out." if empty?
-    @bikes.pop
+    raise "There are no bikes to take out." if no_working_bikes?
+    bike_to_release = working_bikes.last
+    @bikes.delete(bike_to_release)
+    bike_to_release
   end
 
   def dock(bike)
@@ -24,7 +26,11 @@ class DockingStation
     @bikes.length >= @capacity
   end
 
-  def empty?
-    @bikes.empty?
+  def no_working_bikes?
+    working_bikes.empty?
+  end
+
+  def working_bikes
+    @bikes.select { |bike| bike.working? }
   end
 end

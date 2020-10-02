@@ -1,6 +1,9 @@
-require 'Bike'
+require "Bike"
 
 describe Bike do
+  it "can remember if it's broken" do
     bike = Bike.new
-    it { expect(bike).to respond_to("working?") }
+    bike.report_broken
+    expect(bike.working?).to eq false
+  end
 end

@@ -1,38 +1,30 @@
 DockingStation = Class.new
 
 class DockingStation
-  attr_accessor :bikes_docked, :capacity
-
-  DEFAULT_CAPACITY = 20
-
-  def default_capacity
-    DEFAULT_CAPACITY
-  end
+  attr_accessor :bikes, :capacity
 
   def initialize(capacity = 20)
-    @bikes_docked = []
+    @bikes = []
     @capacity = capacity
   end
 
   def release_bike
     raise "There are no bikes to take out." if empty?
-    returned_bike = @bikes_docked[-1]
-    @bikes_docked.pop
-    return returned_bike
+    @bikes.pop
   end
 
   def dock(bike)
     raise "Docking station full." if full?
-    @bikes_docked << bike
+    @bikes << bike
   end
 
   private
 
   def full?
-    @bikes_docked.length >= @capacity
+    @bikes.length >= @capacity
   end
 
   def empty?
-    @bikes_docked.empty?
+    @bikes.empty?
   end
 end

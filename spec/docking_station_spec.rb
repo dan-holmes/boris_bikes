@@ -14,6 +14,11 @@ describe DockingStation do
     expect { docking_station.dock(Bike.new) }.to raise_error("Docking station full.")
   end
 
+  it "will not release a bike if empty" do
+    docking_station = DockingStation.new
+    expect { docking_station.release_bike }.to raise_error "There are no bikes to take out."
+  end
+
   # describe "docking station full" do
   #   before do
   #     docking_station.bikes_docked = []

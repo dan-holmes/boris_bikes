@@ -34,4 +34,10 @@ describe DockingStation do
     15.times { docking_station.dock(Bike.new) }
     expect { docking_station.dock(Bike.new) }.to raise_error "Docking station full."
   end
+
+  it "has a fault capacity of 20 if no capacity given" do
+    docking_station = DockingStation.new
+    20.times { docking_station.dock(Bike.new) }
+    expect { docking_station.dock(Bike.new) }.to raise_error "Docking station full."
+  end
 end

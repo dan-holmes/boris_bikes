@@ -8,6 +8,16 @@ describe DockingStation do
     expect(docking_station.release_bike).to eq bike
   end
 
+  it "can dock and release multiple bikes" do
+    docking_station = DockingStation.new
+    test_bikes = []
+    docking_station.capacity.times { test_bikes.push(Bike.new) }
+    test_bikes.each { |bike| docking_station.dock(bike) }
+    released_bikes = []
+    docking_station.capacity.times { released_bikes.push(docking_station.release_bike) }
+    expect(test_bikes).to eq released_bikes.reverse
+  end
+
   it "will not dock a bike if full" do
     docking_station = DockingStation.new
     docking_station.capacity.times { docking_station.dock(Bike.new) }
